@@ -24,7 +24,7 @@ public class DoubleValidator {
 	}
 
 	public static void checkDoubleArray(double[] value) throws ArgsValidationException {
-		if (value != null) {
+		if (null != value) {
 			for (int i = 0; i < value.length; i++) {
 				if (value[i] > 0) {
 					if (value[i] < Double.MIN_VALUE || value[i] > Double.MAX_VALUE) {

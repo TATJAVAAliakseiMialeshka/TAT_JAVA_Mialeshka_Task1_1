@@ -28,7 +28,7 @@ public class Hometask8Performer extends AbstractPerformer {
 
 	public long calcSumm(long[] arr, long division) {
 		long summ = 0;
-		if (arr != null) {
+		if (null!= arr) {
 			for (int i = 0; i < arr.length; i++) {
 				if (arr[i] % division == 0) {
 					summ += arr[i];
@@ -39,7 +39,7 @@ public class Hometask8Performer extends AbstractPerformer {
 	}
 
 	public void printArray(long[] arr) {
-		if (arr != null) {
+		if (null != arr) {
 			PrinterWorker.printString(EXPLANATION);
 			for (int i = 0; i < arr.length; i++) {
 				PrinterWorker.printString(arr[i] + " ");

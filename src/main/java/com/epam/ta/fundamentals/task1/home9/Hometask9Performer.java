@@ -41,7 +41,7 @@ public class Hometask9Performer extends AbstractPerformer {
 	}
 
 	private void printArray(int[] arr) {
-		if (arr != null) {
+		if (null!= arr) {
 			for (int i = 0; i < arr.length; i++) {
 				PrinterWorker.printString(arr[i] + " ");
 			}
@@ -51,7 +51,7 @@ public class Hometask9Performer extends AbstractPerformer {
 
 	public int[] generateResultArray(int[] arr1, int[] arr2, int insertIndex) {
 		int[] resultArray = {};
-		if (arr1 != null && arr2 != null) {
+		if (null!= arr1 && null!= arr2) {
 			initiateOutput(arr1, arr2, insertIndex);
 			resultArray = new int[arr1.length + arr2.length];
 			for (int i = 0; i < insertIndex; i++) {

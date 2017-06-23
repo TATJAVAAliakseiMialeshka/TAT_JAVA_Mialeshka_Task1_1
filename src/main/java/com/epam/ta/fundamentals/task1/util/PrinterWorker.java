@@ -3,13 +3,13 @@ package com.epam.ta.fundamentals.task1.util;
 public class PrinterWorker {
 
 	public static void printErrorString(String errorStr) {
-		if (errorStr != null && !errorStr.isEmpty()) {
+		if (null != errorStr && !errorStr.isEmpty()) {
 			System.out.println(errorStr);
 		}
 	}
 
 	public static void printString(String resutlStr) {
-		if (resutlStr != null && !resutlStr.isEmpty()) {
+		if (null != resutlStr && !resutlStr.isEmpty()) {
 			System.out.print(resutlStr);
 		}
 	}
@@ -18,7 +18,9 @@ public class PrinterWorker {
 		System.out.println(result);
 	}
 
-	public static void printFormatString(String string, Object... arg1) {
-		System.out.printf(string, arg1);
+	public static void printFormatString(String string, Object... args) {
+		if (null != string && !string.isEmpty() && null != args) {
+			System.out.printf(string, args);
+		}
 	}
 }

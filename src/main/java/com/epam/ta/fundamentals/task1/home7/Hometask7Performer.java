@@ -52,7 +52,7 @@ public class Hometask7Performer extends AbstractPerformer {
 	}
 
 	public void printMap(TreeMap<Double, Double> map) {
-		if (map != null && map.size() > 0) {
+		if (null != map && map.size() > 0) {
 			PrinterWorker.printString("**********************************************\n");
 			for (Entry<Double, Double> entry : map.entrySet()) {
 				PrinterWorker.printFormatString("**  %10f" + "   **   % .16f" + "   **\n", entry.getKey(),

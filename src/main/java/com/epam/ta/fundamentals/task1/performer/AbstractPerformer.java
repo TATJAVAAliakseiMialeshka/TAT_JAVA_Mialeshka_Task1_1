@@ -32,7 +32,7 @@ public abstract class AbstractPerformer {
 	}
 
 	public void setNumbersForCalculation(int[] numbersForCalculation) {
-		if (numbersForCalculation != null) {
+		if (null != numbersForCalculation) {
 			this.numbersForCalculation = numbersForCalculation;
 		}
 	}

@@ -6,6 +6,7 @@ public abstract class AbstractArgsValidator {
 
 	private static final String NUMBER_IS_NAN = "Reseived NaN number.";
 	private static final String NUMBER_IS_INFINITY = "Reseived Infinity number.";
+	private static final String NULL_ARGS_ARRAY = "Args array is null.";
 
 	private String[] argsString;
 
@@ -17,12 +18,13 @@ public abstract class AbstractArgsValidator {
 
 	public AbstractArgsValidator(String[] argsString) {
 		super();
-		this.argsString = argsString;
+		setArgsString(argsString);
+		;
 	}
 
 	public void setArgsString(String argsString[]) {
-		if (argsString != null) {
-			setArgsString(argsString);
+		if (null != argsString) {
+			this.argsString = argsString;
 		}
 	}
 
@@ -43,7 +45,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void setDoubleArgsArr(double[] doubleArgsArr) {
-		if (doubleArgsArr != null) {
+		if (null != doubleArgsArr) {
 			this.doubleArgsArr = doubleArgsArr;
 		}
 	}
@@ -57,7 +59,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void setIntArgsArr(int[] intArgsArr) {
-		if (intArgsArr != null) {
+		if (null != intArgsArr) {
 			this.intArgsArr = intArgsArr;
 		}
 	}
@@ -67,7 +69,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void setLongArgsArr(long[] longArgsArr) {
-		if (longArgsArr != null) {
+		if (null != longArgsArr) {
 			this.longArgsArr = longArgsArr;
 		}
 	}
@@ -75,18 +77,21 @@ public abstract class AbstractArgsValidator {
 	public abstract void checkArguments() throws ArgsValidationException;
 
 	public void validateAmountOfArgsEqualTo(int amount, String errorMessage) throws ArgsValidationException {
-		if (argsString.length != amount) {
+
+		if (null != argsString && argsString.length != amount) {
 			throw new ArgsValidationException(errorMessage);
 		}
 	}
 
 	public void validateAmountOfArgsLessThan(int amount, String errorMessage) throws ArgsValidationException {
-		if (argsString.length < amount) {
+
+		if (null != argsString && argsString.length < amount) {
 			throw new ArgsValidationException(errorMessage);
 		}
 	}
 
 	public void extractIntArguments(String errMessage) throws ArgsValidationException {
+		checkArgsArrayNotNull();
 		int[] argsArr = new int[argsString.length];
 		try {
 			for (int i = 0; i < argsString.length; i++) {
@@ -99,6 +104,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void extractLongArguments(String errMessage) throws ArgsValidationException {
+		checkArgsArrayNotNull();
 		long[] argsArr = new long[argsString.length];
 		try {
 			for (int i = 0; i < argsString.length; i++) {
@@ -112,6 +118,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void extractDoubleArguments(String errMessage) throws ArgsValidationException {
+		checkArgsArrayNotNull();
 		double[] argsArr = new double[argsString.length];
 		try {
 			for (int i = 0; i < argsString.length; i++) {
@@ -136,7 +143,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void validateDoubleArrIsPositive(String errMessage) throws ArgsValidationException {
-		if (doubleArgsArr.length != 0) {
+		if (null != doubleArgsArr && doubleArgsArr.length != 0) {
 			for (int i = 0; i < doubleArgsArr.length; i++) {
 				if (doubleArgsArr[i] <= 0) {
 					throw new ArgsValidationException(errMessage);
@@ -146,7 +153,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void validateLongArrIsPositive(String errMessage) throws ArgsValidationException {
-		if (longArgsArr.length != 0) {
+		if (null != longArgsArr && longArgsArr.length != 0) {
 			for (int i = 0; i < longArgsArr.length - 1; i++) {
 				if (longArgsArr[i] < 0) {
 					throw new ArgsValidationException(errMessage);
@@ -156,6 +163,7 @@ public abstract class AbstractArgsValidator {
 	}
 
 	public void extractPositiveDoubleArguments(String errMessage1, String errMessage2) throws ArgsValidationException {
+		checkArgsArrayNotNull();
 		double[] argsArr = new double[argsString.length];
 		try {
 			for (int i = 0; i < argsString.length; i++) {
@@ -169,6 +177,12 @@ public abstract class AbstractArgsValidator {
 			throw new ArgsValidationException(errMessage2, e);
 		}
 
+	}
+
+	private void checkArgsArrayNotNull() throws ArgsValidationException {
+		if (null == argsString) {
+			throw new ArgsValidationException(NULL_ARGS_ARRAY);
+		}
 	}
 
 }
